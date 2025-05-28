@@ -6,6 +6,7 @@ import {
   generarNumeroCarta,
   obtenerPuntosCarta,
   sumarPuntos,
+  obtenerEstadoPartida,
 } from "./motor";
 
 export const muestraCarta = (urlCarta: string): void => {
@@ -115,12 +116,12 @@ export const reiniciarPartida = (): void => {
 };
 
 export const revisarMano = () => {
-  if (partida.puntuacion === 7.5) {
+  if (obtenerEstadoPartida() === "Ganar") {
     pintarMensaje("¡Has ganado!");
     bloquearBotonPedirCarta(true);
     bloquearBotonVerLoQueHubieraPasado(true);
     bloquearBotonMePlanto(true);
-  } else if (partida.puntuacion > 7.5) {
+  } else if (obtenerEstadoPartida() === "Perder") {
     pintarMensaje("¡Has perdido!");
     bloquearBotonPedirCarta(true);
     bloquearBotonMePlanto(true);
